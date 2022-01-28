@@ -3,11 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="right"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.iliavolkov.filmlibrary.repository.RepositoryImpl
+import ru.iliavolkov.worldcinema.repositiry.RepositoryImpl
+import ru.iliavolkov.worldcinema.model.CoverDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
 
 
@@ -21,6 +22,10 @@ class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData
     }
     fun signIn(email: String, pass: String){
         repositoryImpl.signIn(email,pass,callbackSignIn)
+    }
+
+    fun getCover(){
+        repositoryImpl.getCover(callbackCover)
     }
 
     private val callbackSuccessfulRegistration = object : Callback<String> {
@@ -47,6 +52,21 @@ class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData
 
         override fun onFailure(call: Call<TokenDTO>, t: Throwable) {
             Log.d("myLogs",t.toString())
+        }
+
+    }
+
+    private val callbackCover = object :Callback<CoverDTO>{
+        override fun onResponse(call: Call<CoverDTO>, response: Response<CoverDTO>) {
+            if (response.isSuccessful){
+                response.body()?.let{
+                    liveData.postValue(it)
+                }
+            }
+        }
+
+        override fun onFailure(call: Call<CoverDTO>, t: Throwable) {
+            TODO("Not yet implemented")
         }
 
     }

@@ -1,4 +1,4 @@
-package ru.iliavolkov.filmlibrary.repository
+package ru.iliavolkov.worldcinema.repositiry
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -6,11 +6,11 @@ import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import ru.iliavolkov.worldcinema.model.CoverDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
-import ru.iliavolkov.worldcinema.repositiry.ApiRequest
 import ru.iliavolkov.worldcinema.utils.BASE_URL
 
-class RepositoryImpl :RepositoryFun {
+class RepositoryImpl : RepositoryFun {
     private val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
         .client(OkHttpClient())
         .addConverterFactory(ScalarsConverterFactory.create())
@@ -25,6 +25,10 @@ class RepositoryImpl :RepositoryFun {
 
     override fun signIn(email: String, pass: String, callback: Callback<TokenDTO>) {
         retrofit.signIn(email,pass).enqueue(callback)
+    }
+
+    override fun getCover(callback: Callback<CoverDTO>) {
+        retrofit.getCover().enqueue(callback)
     }
 
 //    override fun getVideoFromServer(search:Int, field:String, callBack: Callback<DataDTO>) {
