@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.iliavolkov.worldcinema.databinding.FragmentMainBinding
-import ru.iliavolkov.worldcinema.view.signscreenfragment.SignUpScreenFragment
 import ru.iliavolkov.worldcinema.viewmodel.MainViewModel
 
 class MainFragment:Fragment() {
@@ -23,13 +22,18 @@ class MainFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //viewModel.getLiveData().observe(viewLifecycleOwner, {renderData(it)})
+        viewModel.getLiveData().observe(viewLifecycleOwner, {renderData(it)})
 
+
+    }
+
+    private fun renderData(it: Any?) {
+        TODO("Not yet implemented")
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = SignUpScreenFragment()
+        fun newInstance() = MainFragment()
     }
 
     override fun onDestroy() {

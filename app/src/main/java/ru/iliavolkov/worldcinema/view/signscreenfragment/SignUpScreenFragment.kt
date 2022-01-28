@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentSignUpScreenBinding
 import ru.iliavolkov.worldcinema.model.TokenDTO
+import ru.iliavolkov.worldcinema.view.main.MainFragment
 import ru.iliavolkov.worldcinema.viewmodel.MainViewModel
 
 class SignUpScreenFragment:Fragment() {
@@ -38,7 +39,9 @@ class SignUpScreenFragment:Fragment() {
                 viewModel.signIn(email, password)
             }
             is TokenDTO ->{
-
+                requireActivity().supportFragmentManager.beginTransaction().replace(
+                    R.id.container, MainFragment.newInstance()
+                ).commit()
             }
         }
         Log.d("myLog",it.toString())
