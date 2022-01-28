@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WorldCinema</string>
+    <string name="logo">Logo</string>
+    <string name="e_mail">E-mail</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="Password">Пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="name">Имя</string>
+    <string name="fam">Фамилия</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="est_acc">У меня уже есть аккаунт</string>
+</resources>
