@@ -35,7 +35,6 @@ class MainFragmentAdapter(val listener: OnItemClickListener): RecyclerView.Adapt
         fun bind(film: FilmInfoDTO){
             FragmentMainRecyclerFilmItemBinding.bind(itemView).run {
                 poster.load("$IMAGE_URL${film.poster}")
-                recyclerItemName.text = film.name
                 root.setOnClickListener{ listener.onItemClick(film) }
             }
 

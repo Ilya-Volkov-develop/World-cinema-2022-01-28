@@ -15,18 +15,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/recyclerItemName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#1D1D1D"
-        android:lines="1"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/poster"
-        app:layout_constraintStart_toStartOf="@+id/poster"
-        app:layout_constraintTop_toBottomOf="@+id/poster"
-        tools:text="Name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_color"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/filmPreview"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/gradient_image_film"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/filmName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="60dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            tools:text="18+"
+            android:textSize="20sp"
+            android:layout_margin="15dp"
+            android:textColor="@color/main_color_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Смотреть"
+            android:textSize="25dp"
+            android:padding="13dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/filmPreview" />
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/filmVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Описание"
+            android:textSize="25dp"
+            android:padding="13dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/filmVideo" />
+        <TextView
+            android:id="@+id/filmDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="15dp"
+            android:padding="13dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
