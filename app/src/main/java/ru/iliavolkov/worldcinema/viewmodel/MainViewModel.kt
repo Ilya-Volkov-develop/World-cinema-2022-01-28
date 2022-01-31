@@ -8,6 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.iliavolkov.worldcinema.repositiry.RepositoryImpl
 import ru.iliavolkov.worldcinema.model.CoverDTO
+import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
 
 
@@ -26,6 +27,10 @@ class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData
 
     fun getCover(){
         repositoryImpl.getCover(callbackCover)
+    }
+
+    fun getMoviesList(filter:String){
+        repositoryImpl.getMoviesList(filter,callbackMoviesList)
     }
 
     private val callbackSuccessfulRegistration = object : Callback<String> {
@@ -67,6 +72,20 @@ class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData
 
         override fun onFailure(call: Call<CoverDTO>, t: Throwable) {
             TODO("Not yet implemented")
+        }
+
+    }
+
+    private val callbackMoviesList = object : Callback<List<FilmInfoDTO>>{
+        override fun onResponse(call: Call<List<FilmInfoDTO>>, response: Response<List<FilmInfoDTO>>) {
+            if (response.isSuccessful)
+                response.body()?.let{
+                    liveData.postValue(AppStateInfo.Success(it))
+                }
+        }
+
+        override fun onFailure(call: Call<List<FilmInfoDTO>>, t: Throwable) {
+            Log.d("myLogs",t.toString())
         }
 
     }

@@ -9,4 +9,7 @@
     <string name="fam">Фамилия</string>
     <string name="register">Зарегистрироваться</string>
     <string name="est_acc">У меня уже есть аккаунт</string>
+    <string name="inTrend">В тренде</string>
+    <string name="inNew">Новое</string>
+    <string name="forMe">Для Вас</string>
 </resources>

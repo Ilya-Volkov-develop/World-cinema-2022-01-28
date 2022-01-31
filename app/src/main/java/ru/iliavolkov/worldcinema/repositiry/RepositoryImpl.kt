@@ -7,6 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import ru.iliavolkov.worldcinema.model.CoverDTO
+import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
 import ru.iliavolkov.worldcinema.utils.BASE_URL
 
@@ -29,6 +30,10 @@ class RepositoryImpl : RepositoryFun {
 
     override fun getCover(callback: Callback<CoverDTO>) {
         retrofit.getCover().enqueue(callback)
+    }
+
+    override fun getMoviesList(filter: String, callback: Callback<List<FilmInfoDTO>>) {
+        retrofit.getMoviesList(filter).enqueue(callback)
     }
 
 //    override fun getVideoFromServer(search:Int, field:String, callBack: Callback<DataDTO>) {

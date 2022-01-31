@@ -1,11 +1,9 @@
 package ru.iliavolkov.worldcinema.repositiry
 
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import ru.iliavolkov.worldcinema.model.CoverDTO
+import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
 import ru.iliavolkov.worldcinema.utils.END_POINT_AUTH_LOGIN
 import ru.iliavolkov.worldcinema.utils.END_POINT_AUTH_REGISTER
@@ -31,20 +29,9 @@ interface ApiRequest {
     @GET(END_POINT_MOVIES_COVER)
     fun getCover():Call<CoverDTO>
 
-//    @GET(KINOPOISK_API_URL_END_POINT)
-//    fun getFilms(
-//            @Header(API_KEY_NAME) apikey:String,
-//            @Query("search") search:Int,
-//            @Query("field") field:String,
-//            @Query("token") token:String,
-//            @Query("limit") limit:Int
-//    ):Call<DataDTO>
-//
-//    @GET(KINOPOISK_API_URL_END_POINT)
-//    fun getFilmInfo(
-//        @Query("search") id:Long,
-//        @Query("field") field:String,
-//        @Query("token") token:String
-//    ):Call<FilmDTO>
+    @GET("movies")
+    fun getMoviesList(
+        @Query("filter") filter:String
+    ):Call<List<FilmInfoDTO>>
 
 }
