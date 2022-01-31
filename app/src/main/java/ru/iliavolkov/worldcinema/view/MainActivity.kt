@@ -5,6 +5,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.ActivityMainBinding
+import ru.iliavolkov.worldcinema.view.main.MainFragment
 import ru.iliavolkov.worldcinema.view.splash.SplashFragment
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(
                     R.id.container,
-                    SplashFragment.newInstance()
+                    MainFragment.newInstance()
             ).commit()
         }
     }

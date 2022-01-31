@@ -12,4 +12,5 @@
     <string name="inTrend">В тренде</string>
     <string name="inNew">Новое</string>
     <string name="forMe">Для Вас</string>
+    <string name="main_navigation">Главная</string>
 </resources>

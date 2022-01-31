@@ -1,4 +1,4 @@
-package ru.iliavolkov.worldcinema.view.main
+package ru.iliavolkov.worldcinema.view.main.mainscreen
 
 import android.view.LayoutInflater
 import android.view.View

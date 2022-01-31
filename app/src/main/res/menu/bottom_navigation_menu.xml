@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_1"
+        android:enabled="true"
+        android:title="@string/main_navigation"
+        android:icon="@drawable/main_tv"/>
+    <item
+        android:id="@+id/page_2"
+        android:enabled="true"
+        android:title="compilation"
+        android:icon="@drawable/compilation"/>
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:title="collection"
+        android:icon="@drawable/star"/>
+    <item
+        android:id="@+id/page_4"
+        android:enabled="true"
+        android:title="profile"
+        android:icon="@drawable/profile"/>
+</menu>
