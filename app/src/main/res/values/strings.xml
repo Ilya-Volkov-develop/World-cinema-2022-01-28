@@ -13,4 +13,7 @@
     <string name="inNew">Новое</string>
     <string name="forMe">Для Вас</string>
     <string name="main_navigation">Главная</string>
+    <string name="watch">Смотреть</string>
+    <string name="description">Описание</string>
+    <string name="frames">Кадры</string>
 </resources>

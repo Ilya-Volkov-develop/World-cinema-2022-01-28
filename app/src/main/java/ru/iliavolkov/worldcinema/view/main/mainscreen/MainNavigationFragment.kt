@@ -13,8 +13,10 @@ import ru.iliavolkov.worldcinema.databinding.FragmentMainBinding
 import ru.iliavolkov.worldcinema.databinding.FragmentMainNavigationBinding
 import ru.iliavolkov.worldcinema.model.CoverDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
+import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_INFO
 import ru.iliavolkov.worldcinema.utils.IMAGE_URL
 import ru.iliavolkov.worldcinema.view.main.MainFragment
+import ru.iliavolkov.worldcinema.view.main.filminfo.FilmFragment
 import ru.iliavolkov.worldcinema.viewmodel.AppStateInfo
 import ru.iliavolkov.worldcinema.viewmodel.MainViewModel
 
@@ -33,7 +35,7 @@ class MainNavigationFragment:Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, {renderData(it)})
-        viewModel.getMoviesList("inTrend")
+        viewModel.getCover()
         binding.recyclerView.adapter = adapter
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -54,13 +56,14 @@ class MainNavigationFragment:Fragment(), OnItemClickListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
         })
-        viewModel.getCover()
+
     }
 
     private fun renderData(it: Any?) {
         when(it){
             is CoverDTO ->{
                 initSlider(it.backgroundImage,it.foregroundImage)
+                viewModel.getMoviesList("inTrend")
             }
             is AppStateInfo.Success ->{
                 adapter.setFilm(it.filmInfo)
@@ -81,7 +84,12 @@ class MainNavigationFragment:Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(film: FilmInfoDTO) {
-
+        requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.container,FilmFragment.newInstance(Bundle().apply {
+                    putParcelable(BUNDLE_KEY_FILM_INFO,film)
+                }))
+                .addToBackStack("")
+                .commit()
     }
 
     companion object {
