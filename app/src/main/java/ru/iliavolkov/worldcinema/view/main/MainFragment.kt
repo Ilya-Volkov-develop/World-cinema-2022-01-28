@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ru.iliavolkov.worldcinema.view.history.HistoryFragment
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentMainBinding
 import ru.iliavolkov.worldcinema.view.main.compilationscreen.CompilationsFragment
@@ -47,7 +48,9 @@ class MainFragment:Fragment() {
                     true
                 }
                 R.id.page_3 -> {
-                    init()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentMainContainer, HistoryFragment.newInstance())
+                        .commit()
                     true
                 }
                 R.id.page_4 -> {

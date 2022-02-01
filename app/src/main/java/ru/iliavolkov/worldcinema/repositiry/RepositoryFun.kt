@@ -10,6 +10,4 @@ interface RepositoryFun {
     fun signIn(email:String, pass:String, callback: Callback<TokenDTO>)
     fun getCover(callback: Callback<CoverDTO>)
     fun getMoviesList(filter:String,callback: Callback<List<FilmInfoDTO>>)
-//    fun getVideoFromServer(search:Int, field:String, callBack: Callback<DataDTO>)
-//    fun getInfoFromServer(id: Long, field: String, callBack: Callback<FilmDTO>)
 }
