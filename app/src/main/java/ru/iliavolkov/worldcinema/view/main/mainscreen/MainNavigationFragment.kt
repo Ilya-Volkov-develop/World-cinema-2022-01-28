@@ -6,16 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import ru.iliavolkov.worldcinema.R
-import ru.iliavolkov.worldcinema.databinding.FragmentMainBinding
 import ru.iliavolkov.worldcinema.databinding.FragmentMainNavigationBinding
 import ru.iliavolkov.worldcinema.model.CoverDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_INFO
 import ru.iliavolkov.worldcinema.utils.IMAGE_URL
-import ru.iliavolkov.worldcinema.view.main.MainFragment
 import ru.iliavolkov.worldcinema.view.main.filminfo.FilmFragment
 import ru.iliavolkov.worldcinema.viewmodel.AppStateInfo
 import ru.iliavolkov.worldcinema.viewmodel.MainViewModel

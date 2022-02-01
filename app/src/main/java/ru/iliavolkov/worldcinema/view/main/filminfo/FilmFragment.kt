@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
+import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentFilmBinding
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
+import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_IMAGE
 import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_INFO
 import ru.iliavolkov.worldcinema.utils.IMAGE_URL
-import ru.iliavolkov.worldcinema.view.main.filminfo.OnItemClickListener
 
 @Suppress("DEPRECATION")
 class FilmFragment:Fragment(),OnItemClickListener {
@@ -70,7 +71,12 @@ class FilmFragment:Fragment(),OnItemClickListener {
         _binding = null
     }
 
-    override fun onItemClick() {
-
+    override fun onItemClick(frame:String) {
+        requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.container,FilmImageFragment.newInstance(Bundle().apply {
+                    putString(BUNDLE_KEY_FILM_IMAGE,frame)
+                }))
+                .addToBackStack("")
+                .commit()
     }
 }

@@ -5,17 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentMainBinding
-import ru.iliavolkov.worldcinema.model.CoverDTO
-import ru.iliavolkov.worldcinema.model.FilmInfoDTO
-import ru.iliavolkov.worldcinema.view.main.mainscreen.MainFragmentAdapter
 import ru.iliavolkov.worldcinema.view.main.mainscreen.MainNavigationFragment
-import ru.iliavolkov.worldcinema.view.main.mainscreen.OnItemClickListener
-import ru.iliavolkov.worldcinema.viewmodel.AppStateInfo
-import ru.iliavolkov.worldcinema.viewmodel.MainViewModel
 
 @Suppress("DEPRECATION")
 class MainFragment:Fragment() {

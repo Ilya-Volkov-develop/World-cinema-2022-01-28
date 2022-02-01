@@ -31,10 +31,10 @@ class FilmFragmentFramesAdapter(val listener: OnItemClickListener): RecyclerView
     }
 
     inner class FilmFramesViewHolder(view: View):RecyclerView.ViewHolder(view){
-        fun bind(frames: String){
+        fun bind(frame: String){
             FragmentFilmFramesRecyclerItemBinding.bind(itemView).run {
-                framesImage.load("$IMAGE_URL${frames}")
-                root.setOnClickListener{ listener.onItemClick() }
+                framesImage.load("$IMAGE_URL${frame}")
+                root.setOnClickListener{ listener.onItemClick(frame) }
             }
 
 
