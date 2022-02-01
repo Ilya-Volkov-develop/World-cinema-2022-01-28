@@ -1,7 +1,6 @@
 package ru.iliavolkov.worldcinema.view
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.ActivityMainBinding

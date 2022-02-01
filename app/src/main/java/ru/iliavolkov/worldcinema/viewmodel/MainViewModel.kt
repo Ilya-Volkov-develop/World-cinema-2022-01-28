@@ -7,30 +7,35 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.iliavolkov.worldcinema.model.CoverDTO
+import ru.iliavolkov.worldcinema.model.EpisodesDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
-import ru.iliavolkov.worldcinema.repositiry.RepositoryImpl
+import ru.iliavolkov.worldcinema.repositiry.RepositoryRemoteImpl
 
 
 class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData()): ViewModel() {
 
-    private val repositoryImpl: RepositoryImpl by lazy { RepositoryImpl() }
+    private val repositoryRemoteImpl: RepositoryRemoteImpl by lazy { RepositoryRemoteImpl() }
 
     fun getLiveData() = liveData
 
     fun signUp(email: String, pass: String, firstName: String, lastName: String){
-        repositoryImpl.signUp(email,pass,firstName,lastName,callbackSuccessfulRegistration)
+        repositoryRemoteImpl.signUp(email,pass,firstName,lastName,callbackSuccessfulRegistration)
     }
     fun signIn(email: String, pass: String){
-        repositoryImpl.signIn(email,pass,callbackSignIn)
+        repositoryRemoteImpl.signIn(email,pass,callbackSignIn)
     }
 
     fun getCover(){
-        repositoryImpl.getCover(callbackCover)
+        repositoryRemoteImpl.getCover(callbackCover)
     }
 
     fun getMoviesList(filter:String){
-        repositoryImpl.getMoviesList(filter,callbackMoviesList)
+        repositoryRemoteImpl.getMoviesList(filter,callbackMoviesList)
+    }
+
+    fun getEpisodes(movieID: String) {
+        repositoryRemoteImpl.getEpisodes(movieID,callbackEpisodesList)
     }
 
     private val callbackSuccessfulRegistration = object : Callback<String> {
@@ -86,6 +91,20 @@ class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData
 
         override fun onFailure(call: Call<List<FilmInfoDTO>>, t: Throwable) {
             Log.d("myLogs",t.toString())
+        }
+
+    }
+
+    private val callbackEpisodesList = object : Callback<List<EpisodesDTO>>{
+        override fun onResponse(call: Call<List<EpisodesDTO>>, response: Response<List<EpisodesDTO>>) {
+            if (response.isSuccessful)
+                response.body()?.let{
+                    liveData.postValue(AppStateEpisodes.Success(it))
+                }
+        }
+
+        override fun onFailure(call: Call<List<EpisodesDTO>>, t: Throwable) {
+
         }
 
     }

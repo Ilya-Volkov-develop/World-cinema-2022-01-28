@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ru.iliavolkov.worldcinema.view.history.HistoryFragment
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentMainBinding
+import ru.iliavolkov.worldcinema.view.history.HistoryFragment
 import ru.iliavolkov.worldcinema.view.main.compilationscreen.CompilationsFragment
 import ru.iliavolkov.worldcinema.view.main.mainscreen.MainNavigationFragment
 

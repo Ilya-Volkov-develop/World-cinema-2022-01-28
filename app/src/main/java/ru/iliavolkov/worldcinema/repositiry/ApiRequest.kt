@@ -3,11 +3,10 @@ package ru.iliavolkov.worldcinema.repositiry
 import retrofit2.Call
 import retrofit2.http.*
 import ru.iliavolkov.worldcinema.model.CoverDTO
+import ru.iliavolkov.worldcinema.model.EpisodesDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
-import ru.iliavolkov.worldcinema.utils.END_POINT_AUTH_LOGIN
-import ru.iliavolkov.worldcinema.utils.END_POINT_AUTH_REGISTER
-import ru.iliavolkov.worldcinema.utils.END_POINT_MOVIES_COVER
+import ru.iliavolkov.worldcinema.utils.*
 
 interface ApiRequest {
     @POST(END_POINT_AUTH_REGISTER)
@@ -29,9 +28,14 @@ interface ApiRequest {
     @GET(END_POINT_MOVIES_COVER)
     fun getCover():Call<CoverDTO>
 
-    @GET("movies")
+    @GET(END_POINT_MOVIES)
     fun getMoviesList(
         @Query("filter") filter:String
     ):Call<List<FilmInfoDTO>>
+
+    @GET(END_POINT_MOVIE_EPISODES)
+    fun getEpisodes(
+            @Path("movieId") movieId:String
+    ):Call<List<EpisodesDTO>>
 
 }

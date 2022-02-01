@@ -7,11 +7,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import ru.iliavolkov.worldcinema.model.CoverDTO
+import ru.iliavolkov.worldcinema.model.EpisodesDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
 import ru.iliavolkov.worldcinema.utils.BASE_URL
 
-class RepositoryImpl : RepositoryFun {
+class RepositoryRemoteImpl : RepositoryRemote {
     private val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
         .client(OkHttpClient())
         .addConverterFactory(ScalarsConverterFactory.create())
@@ -34,6 +35,10 @@ class RepositoryImpl : RepositoryFun {
 
     override fun getMoviesList(filter: String, callback: Callback<List<FilmInfoDTO>>) {
         retrofit.getMoviesList(filter).enqueue(callback)
+    }
+
+    override fun getEpisodes(movieId: String, callback: Callback<List<EpisodesDTO>>) {
+        retrofit.getEpisodes(movieId).enqueue(callback)
     }
 
 //    override fun getVideoFromServer(search:Int, field:String, callBack: Callback<DataDTO>) {

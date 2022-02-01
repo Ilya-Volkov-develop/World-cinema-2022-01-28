@@ -62,9 +62,6 @@ dependencies {
     //gson
     implementation 'com.google.code.gson:gson:2.8.8'
 
-    //YouTubeAndroid
-    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

@@ -81,10 +81,10 @@
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/filmPreview" />
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        <VideoView
             android:id="@+id/filmVideo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
