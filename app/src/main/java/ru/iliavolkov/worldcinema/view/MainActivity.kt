@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //убрали верхнуюю строку состояния
-        window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+//        window.setFlags(
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//        )
 
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(

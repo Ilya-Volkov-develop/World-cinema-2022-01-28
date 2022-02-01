@@ -9,8 +9,9 @@ import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentMainRecyclerFilmItemBinding
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.utils.IMAGE_URL
+import ru.iliavolkov.worldcinema.view.main.mainscreen.OnItemClickListener
 
-class FilmsHistoryAdapter: RecyclerView.Adapter<FilmsHistoryAdapter.FilmsHistoryHolder>() {
+class FilmsHistoryAdapter(val listener:OnItemClickListener): RecyclerView.Adapter<FilmsHistoryAdapter.FilmsHistoryHolder>() {
 
     private var filmData:List<FilmInfoDTO> = listOf()
 
@@ -35,6 +36,7 @@ class FilmsHistoryAdapter: RecyclerView.Adapter<FilmsHistoryAdapter.FilmsHistory
         fun bind(filmInfoDTO: FilmInfoDTO){
             FragmentMainRecyclerFilmItemBinding.bind(itemView).run {
                 poster.load("$IMAGE_URL${filmInfoDTO.poster}")
+                root.setOnClickListener{ listener.onItemClick(filmInfoDTO) }
             }
         }
     }

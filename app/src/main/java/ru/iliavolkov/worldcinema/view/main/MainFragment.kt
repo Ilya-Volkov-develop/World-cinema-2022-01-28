@@ -54,7 +54,6 @@ class MainFragment:Fragment() {
                     true
                 }
                 R.id.page_4 -> {
-                    init()
                     true
                 }
                 else -> false

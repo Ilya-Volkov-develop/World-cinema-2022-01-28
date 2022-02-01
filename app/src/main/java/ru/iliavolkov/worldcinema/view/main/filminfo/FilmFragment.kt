@@ -7,15 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentFilmBinding
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
+import ru.iliavolkov.worldcinema.repositiry.RepositoriesRoomImpl
 import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_IMAGE
 import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_INFO
 import ru.iliavolkov.worldcinema.utils.IMAGE_URL
-import ru.iliavolkov.worldcinema.viewmodel.FilmViewModel
 
 @Suppress("DEPRECATION")
 class FilmFragment:Fragment(),OnItemClickListener {
@@ -24,8 +23,8 @@ class FilmFragment:Fragment(),OnItemClickListener {
     private val binding get() = _binding!!
     lateinit var film:FilmInfoDTO
     private val adapter: FilmFragmentFramesAdapter by lazy { FilmFragmentFramesAdapter(this) }
-    private val viewModel: FilmViewModel by lazy {ViewModelProvider(this).get(FilmViewModel::class.java)
-    }
+    private val repositoriesRoomImpl: RepositoriesRoomImpl by lazy { RepositoriesRoomImpl() }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentFilmBinding.inflate(inflater, container, false)
@@ -61,11 +60,12 @@ class FilmFragment:Fragment(),OnItemClickListener {
         }
         binding.favorite.setOnClickListener {
             if (!isFavorite){
-                viewModel.saveWeather(film)
+                repositoriesRoomImpl.saveFilm(film)
                 binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_24)
                 isFavorite = !isFavorite
                 requireActivity().getPreferences(Activity.MODE_PRIVATE).edit().putBoolean("isFavorite${film.movieID}",isFavorite).apply()
             } else {
+                repositoriesRoomImpl.deleteFilm(film)
                 binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_border_24)
                 isFavorite = !isFavorite
                 requireActivity().getPreferences(Activity.MODE_PRIVATE).edit().putBoolean("isFavorite${film.movieID}",isFavorite).apply()

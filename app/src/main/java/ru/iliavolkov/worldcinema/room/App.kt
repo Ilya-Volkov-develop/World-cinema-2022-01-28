@@ -15,7 +15,7 @@ class App:Application() {
         private var appInstance: App? = null
         private var db: HistoryDatabase? = null
 
-        fun getHistoryWeatherDao(): HistoryFilmDAO {
+        fun getHistoryFilmDao(): HistoryFilmDAO {
             if (db ==null){
                 if (appInstance ==null){
                     throw IllformedLocaleException("Всё плохо")

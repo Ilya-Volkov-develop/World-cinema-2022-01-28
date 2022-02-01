@@ -8,10 +8,25 @@ import ru.iliavolkov.worldcinema.room.HistoryFilmEntity
 class RepositoriesRoomImpl:RepositoryHistoryFilms {
 
     override fun getAllHistoryFilms(): List<FilmInfoDTO> {
-        return convertHistoryWeatherEntityToWeather(App.getHistoryWeatherDao().getAllHistoryWeather())
+        return convertHistoryFilmEntityToFilmInfoDTO(App.getHistoryFilmDao().getAllHistoryWeather())
+    }
+    override fun saveFilm(filmInfoDTO: FilmInfoDTO) {
+        Thread {
+            App.getHistoryFilmDao().insert(
+                    convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO)
+            )
+        }.start()
     }
 
-    private fun convertHistoryWeatherEntityToWeather(entityList:List<HistoryFilmEntity>):List<FilmInfoDTO>{
+    override fun deleteFilm(filmInfoDTO: FilmInfoDTO) {
+        Thread {
+            App.getHistoryFilmDao().delete(
+                    convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO)
+            )
+        }.start()
+    }
+
+    private fun convertHistoryFilmEntityToFilmInfoDTO(entityList:List<HistoryFilmEntity>):List<FilmInfoDTO>{
         return entityList.map{
             FilmInfoDTO(
                 it.movieID.toString(),
@@ -25,15 +40,7 @@ class RepositoriesRoomImpl:RepositoryHistoryFilms {
         }
     }
 
-    override fun saveFilm(filmInfoDTO: FilmInfoDTO) {
-        Thread {
-            App.getHistoryWeatherDao().insert(
-                convertWeatherToHistoryWeatherEntity(filmInfoDTO)
-            )
-        }.start()
-    }
-
-    private fun convertWeatherToHistoryWeatherEntity(filmInfoDTO: FilmInfoDTO): HistoryFilmEntity {
+    private fun convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO: FilmInfoDTO): HistoryFilmEntity {
         return HistoryFilmEntity(
             filmInfoDTO.movieID.toLong(),
             filmInfoDTO.name,
