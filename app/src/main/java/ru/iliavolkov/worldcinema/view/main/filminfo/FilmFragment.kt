@@ -1,6 +1,7 @@
 package ru.iliavolkov.worldcinema.view.main.filminfo
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,27 @@ class FilmFragment:Fragment(),OnItemClickListener {
         }
         binding.frames.adapter = adapter
         init()
+        favoriteBtn()
+    }
+
+    private fun favoriteBtn() {
+        var isFavorite = requireActivity().getPreferences(Activity.MODE_PRIVATE).getBoolean("isFavorite",false)
+        if (isFavorite) {
+            binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_24)
+        }  else {
+            binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_border_24)
+        }
+        binding.favorite.setOnClickListener {
+            if (!isFavorite){
+                binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_24)
+                isFavorite = !isFavorite
+                requireActivity().getPreferences(Activity.MODE_PRIVATE).edit().putBoolean("isFavorite",isFavorite).apply()
+            } else {
+                binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_border_24)
+                isFavorite = !isFavorite
+                requireActivity().getPreferences(Activity.MODE_PRIVATE).edit().putBoolean("isFavorite",isFavorite).apply()
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
