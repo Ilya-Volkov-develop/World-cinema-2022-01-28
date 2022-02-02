@@ -62,6 +62,9 @@ dependencies {
     //gson
     implementation 'com.google.code.gson:gson:2.8.8'
 
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.7'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

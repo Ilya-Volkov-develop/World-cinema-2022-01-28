@@ -81,12 +81,13 @@
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/filmPreview" />
 
-        <VideoView
-            android:id="@+id/filmVideo"
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/playerView"
+            app:controller_layout_id="@layout/media_controller"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            app:show_buffering="always"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -96,7 +97,7 @@
             android:textSize="25dp"
             android:padding="13dp"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/filmVideo" />
+            app:layout_constraintTop_toBottomOf="@+id/playerView" />
         <TextView
             android:id="@+id/filmDescription"
             android:layout_width="match_parent"
@@ -129,7 +130,5 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>
