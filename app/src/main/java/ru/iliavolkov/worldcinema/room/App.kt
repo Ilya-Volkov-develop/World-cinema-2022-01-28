@@ -21,10 +21,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import ru.iliavolkov.worldcinema.repositiry.ApiRequest
+import ru.iliavolkov.worldcinema.room.historyepisode.HistoryDatabaseEpisode
+import ru.iliavolkov.worldcinema.room.historyepisode.HistoryEpisodeDAO
+import ru.iliavolkov.worldcinema.room.historyfilm.HistoryDatabaseFilm
+import ru.iliavolkov.worldcinema.room.historyfilm.HistoryFilmDAO
 import ru.iliavolkov.worldcinema.utils.BASE_URL
 import ru.iliavolkov.worldcinema.utils.DB_NAME
+import ru.iliavolkov.worldcinema.utils.DB_NAME_EPISODE
 import java.util.*
 
+@Suppress("DEPRECATION")
 class App:Application() {
     override fun onCreate() {
         super.onCreate()
@@ -33,8 +39,9 @@ class App:Application() {
 
     companion object{
         private var appInstance: App? = null
-        private var db: HistoryDatabase? = null
-        lateinit var player: SimpleExoPlayer
+        private var dbFilms: HistoryDatabaseFilm? = null
+        private var dbEpisode: HistoryDatabaseEpisode? = null
+        var player: SimpleExoPlayer? = null
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
             .client(OkHttpClient())
             .addConverterFactory(ScalarsConverterFactory.create())
@@ -45,17 +52,30 @@ class App:Application() {
             .build().create(ApiRequest::class.java)!!
 
         fun getHistoryFilmDao(): HistoryFilmDAO {
-            if (db ==null){
+            if (dbFilms ==null){
                 if (appInstance ==null){
                     throw IllformedLocaleException("Всё плохо")
                 } else{
-                    db = Room.databaseBuilder(
+                    dbFilms = Room.databaseBuilder(
                         appInstance!!.applicationContext,
-                        HistoryDatabase::class.java, DB_NAME)
+                        HistoryDatabaseFilm::class.java, DB_NAME)
                         .build()
                 }
             }
-            return db!!.historyWeatherDao()
+            return dbFilms!!.historyFilmDao()
+        }
+        fun getHistoryEpisodeDao(): HistoryEpisodeDAO{
+            if (dbEpisode ==null){
+                if (appInstance ==null){
+                    throw IllformedLocaleException("Всё плохо")
+                } else{
+                    dbEpisode = Room.databaseBuilder(
+                        appInstance!!.applicationContext,
+                        HistoryDatabaseEpisode::class.java, DB_NAME_EPISODE)
+                        .build()
+                }
+            }
+            return dbEpisode!!.historyEpisode()
         }
 
         fun initPlayer(playerView: PlayerView,context: Context){
@@ -72,8 +92,8 @@ class App:Application() {
                 Util.getUserAgent(context,"Exo"), DefaultBandwidthMeter()
             )
             val mediaSource = ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
-            player.prepare(mediaSource)
-            player.playWhenReady = true
+            player?.prepare(mediaSource)
+//            player.playWhenReady = true
         }
     }
 }

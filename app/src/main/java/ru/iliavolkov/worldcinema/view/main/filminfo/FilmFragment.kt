@@ -61,8 +61,8 @@ class FilmFragment:Fragment(),OnItemClickListener {
         init()
         favoriteBtn()
         initPlayer(binding.playerView,requireContext())
-        forward.setOnClickListener{ App.player.seekTo(App.player.currentPosition + 10*1000) }
-        replay.setOnClickListener{ App.player.seekTo(App.player.currentPosition - 10*1000) }
+        forward.setOnClickListener{ App.player?.seekTo(App.player!!.currentPosition + 10*1000) }
+        replay.setOnClickListener{ App.player?.seekTo(App.player!!.currentPosition - 10*1000) }
     }
 
     private fun init() {
@@ -104,8 +104,10 @@ class FilmFragment:Fragment(),OnItemClickListener {
             is AppStateEpisodes.Success -> {
                 if (appState.filmInfo.isNotEmpty()) {
                     loadVod("$VIDEO_URL${appState.filmInfo[0].preview}",requireContext())
+                    repositoriesRoomImpl.saveEpisodePath("$VIDEO_URL${appState.filmInfo[0].preview}")
                 } else {
                     loadVod("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",requireContext())
+                    repositoriesRoomImpl.saveEpisodePath("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
                 }
             }
         }
@@ -126,7 +128,7 @@ class FilmFragment:Fragment(),OnItemClickListener {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        App.player.release()
+        App.player!!.release()
     }
 
 }

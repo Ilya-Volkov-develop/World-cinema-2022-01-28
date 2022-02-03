@@ -3,26 +3,31 @@ package ru.iliavolkov.worldcinema.repositiry
 
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.room.App
-import ru.iliavolkov.worldcinema.room.HistoryFilmEntity
+import ru.iliavolkov.worldcinema.room.historyepisode.HistoryEpisodeEntity
+import ru.iliavolkov.worldcinema.room.historyfilm.HistoryFilmEntity
 
-class RepositoriesRoomImpl:RepositoryHistoryFilms {
+class RepositoriesRoomImpl:RepositoryHistoryFilms,RepositoryEpisode {
 
     override fun getAllHistoryFilms(): List<FilmInfoDTO> {
-        return convertHistoryFilmEntityToFilmInfoDTO(App.getHistoryFilmDao().getAllHistoryWeather())
+        return convertHistoryFilmEntityToFilmInfoDTO(App.getHistoryFilmDao().getAllHistoryFilms())
     }
+
     override fun saveFilm(filmInfoDTO: FilmInfoDTO) {
-        Thread {
-            App.getHistoryFilmDao().insert(
-                    convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO)
-            )
+        Thread { App.getHistoryFilmDao().insert(convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO))
         }.start()
     }
 
     override fun deleteFilm(filmInfoDTO: FilmInfoDTO) {
-        Thread {
-            App.getHistoryFilmDao().delete(
-                    convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO)
-            )
+        Thread { App.getHistoryFilmDao().delete(convertFilmInfoDTOToHistoryFilmEntity(filmInfoDTO))
+        }.start()
+    }
+
+    override fun getEpisodePath(): HistoryEpisodeEntity {
+        return App.getHistoryEpisodeDao().getEpisode()
+    }
+
+    override fun saveEpisodePath(episodesPath: String) {
+        Thread { App.getHistoryEpisodeDao().insert(HistoryEpisodeEntity(1,episodesPath))
         }.start()
     }
 

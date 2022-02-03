@@ -35,11 +35,11 @@ class HistoryFragment : Fragment(), OnItemClickListener {
         viewModel.getAllHistory()
     }
 
-    private fun renderData(appStateBD: AppStateBD) {
+    private fun renderData(appStateBD: Any) {
         when(appStateBD){
             is AppStateBD.Error ->{}
             is AppStateBD.Success ->{
-                adapter.setWeather(appStateBD.weatherInfoHistoryData)
+                adapter.setFilms(appStateBD.weatherInfoHistoryData)
             }
             else -> {}
         }

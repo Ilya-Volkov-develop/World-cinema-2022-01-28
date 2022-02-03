@@ -1,4 +1,4 @@
-package ru.iliavolkov.worldcinema.room
+package ru.iliavolkov.worldcinema.room.historyfilm
 
 import androidx.room.*
 
@@ -15,5 +15,5 @@ interface HistoryFilmDAO {
     fun update(entity: HistoryFilmEntity)
 
     @Query("select * FROM history_weather_entity")
-    fun getAllHistoryWeather():List<HistoryFilmEntity>
+    fun getAllHistoryFilms():List<HistoryFilmEntity>
 }

@@ -21,4 +21,6 @@
     <string name="compilation">Подборка</string>
     <string name="collection">Избранные</string>
     <string name="profile">Профиль</string>
+    <string name="you_watched">Вы смотрели</string>
+    <string name="favorite">Избранные</string>
 </resources>

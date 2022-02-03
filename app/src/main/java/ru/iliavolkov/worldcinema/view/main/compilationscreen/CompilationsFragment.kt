@@ -11,8 +11,8 @@ import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentCompilationsBinding
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.utils.BUNDLE_KEY_FILM_INFO
+import ru.iliavolkov.worldcinema.view.history.FilmsHistoryAdapter
 import ru.iliavolkov.worldcinema.view.main.filminfo.FilmFragment
-import ru.iliavolkov.worldcinema.view.main.mainscreen.MainFragmentAdapter
 import ru.iliavolkov.worldcinema.view.main.mainscreen.OnItemClickListener
 import ru.iliavolkov.worldcinema.viewmodel.AppStateInfo
 import ru.iliavolkov.worldcinema.viewmodel.MainViewModel
@@ -22,7 +22,7 @@ class CompilationsFragment:Fragment(), OnItemClickListener {
     private var _binding: FragmentCompilationsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
-    private val adapter: MainFragmentAdapter by lazy { MainFragmentAdapter(this) }
+    private val adapter: FilmsHistoryAdapter by lazy { FilmsHistoryAdapter(this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentCompilationsBinding.inflate(inflater, container, false)
@@ -59,7 +59,7 @@ class CompilationsFragment:Fragment(), OnItemClickListener {
     private fun renderData(it: Any?) {
         when(it){
             is AppStateInfo.Success ->{
-                adapter.setFilm(it.filmInfo)
+                adapter.setFilms(it.filmInfo)
             }
         }
     }

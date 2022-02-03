@@ -1,4 +1,4 @@
-package ru.iliavolkov.worldcinema.room
+package ru.iliavolkov.worldcinema.room.historyfilm
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 import ru.iliavolkov.worldcinema.model.Tag
 
 @Entity(tableName = "history_weather_entity")
-@TypeConverters(ListToString::class,TagToString::class)
+@TypeConverters(ListToString::class, TagToString::class)
 data class HistoryFilmEntity(
     @PrimaryKey(autoGenerate = true) val movieID: Long,
     val name: String,

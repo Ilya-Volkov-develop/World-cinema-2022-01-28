@@ -4,4 +4,5 @@ import ru.iliavolkov.worldcinema.model.EpisodesDTO
 
 sealed class AppStateEpisodes {
     data class Success(var filmInfo: List<EpisodesDTO>): AppStateEpisodes()
+    data class SuccessRoom(var episodePath:String): AppStateEpisodes()
 }
