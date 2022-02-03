@@ -2,6 +2,8 @@ package ru.iliavolkov.worldcinema.view.main.filminfo
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -75,6 +77,11 @@ class FilmFragment:Fragment(),OnItemClickListener {
             if (film.images.isNotEmpty()){
                 adapter.setFrames(film.images)
                 frameContainer.visibility = View.VISIBLE
+            }
+            webBtn.setOnClickListener {
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse("https://yandex.ru/search/?clid=2285101&text=%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C ${film.name}")
+                startActivity(i)
             }
         }
     }

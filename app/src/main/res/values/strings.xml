@@ -23,4 +23,5 @@
     <string name="profile">Профиль</string>
     <string name="you_watched">Вы смотрели</string>
     <string name="favorite">Избранные</string>
+    <string name="sorry">К сожалению полнометражного фильма нет. Перейти в браузер для поиска?</string>
 </resources>
