@@ -6,7 +6,11 @@ import ru.iliavolkov.worldcinema.model.CoverDTO
 import ru.iliavolkov.worldcinema.model.EpisodesDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
-import ru.iliavolkov.worldcinema.utils.*
+import ru.iliavolkov.worldcinema.utils.END_POINT_AUTH_LOGIN
+import ru.iliavolkov.worldcinema.utils.END_POINT_AUTH_REGISTER
+import ru.iliavolkov.worldcinema.utils.END_POINT_MOVIES
+import ru.iliavolkov.worldcinema.utils.END_POINT_MOVIES_COVER
+import ru.iliavolkov.worldcinema.utils.END_POINT_MOVIE_EPISODES
 
 interface ApiRequest {
     @POST(END_POINT_AUTH_REGISTER)

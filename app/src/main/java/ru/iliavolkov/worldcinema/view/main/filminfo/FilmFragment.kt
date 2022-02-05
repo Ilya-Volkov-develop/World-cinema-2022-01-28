@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.media_controller.*
 import ru.iliavolkov.worldcinema.R
 import ru.iliavolkov.worldcinema.databinding.FragmentFilmBinding
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
-import ru.iliavolkov.worldcinema.repositiry.RepositoriesRoomImpl
 import ru.iliavolkov.worldcinema.room.App
 import ru.iliavolkov.worldcinema.room.App.Companion.initPlayer
 import ru.iliavolkov.worldcinema.room.App.Companion.loadVod
@@ -34,7 +33,6 @@ class FilmFragment:Fragment(),OnItemClickListener {
     private val binding get() = _binding!!
     private lateinit var film:FilmInfoDTO
     private val adapter: FilmFragmentFramesAdapter by lazy { FilmFragmentFramesAdapter(this) }
-    private val repositoriesRoomImpl: RepositoriesRoomImpl by lazy { RepositoriesRoomImpl() }
     private val viewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
 
 
@@ -94,12 +92,12 @@ class FilmFragment:Fragment(),OnItemClickListener {
         }
         binding.favorite.setOnClickListener {
             if (!isFavorite){
-                repositoriesRoomImpl.saveFilm(film)
+                viewModel.saveFilm(film)
                 binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_24)
                 isFavorite = !isFavorite
                 requireActivity().getPreferences(Activity.MODE_PRIVATE).edit().putBoolean("isFavorite${film.movieID}", isFavorite).apply()
             } else {
-                repositoriesRoomImpl.deleteFilm(film)
+                viewModel.deleteFilm(film)
                 binding.favorite.background = requireActivity().getDrawable(R.drawable.ic_baseline_favorite_border_24)
                 isFavorite = !isFavorite
                 requireActivity().getPreferences(Activity.MODE_PRIVATE).edit().putBoolean("isFavorite${film.movieID}", isFavorite).apply()
@@ -111,10 +109,10 @@ class FilmFragment:Fragment(),OnItemClickListener {
             is AppStateEpisodes.Success -> {
                 if (appState.filmInfo.isNotEmpty()) {
                     loadVod("$VIDEO_URL${appState.filmInfo[0].preview}",requireContext())
-                    repositoriesRoomImpl.saveEpisodePath("$VIDEO_URL${appState.filmInfo[0].preview}")
+                    viewModel.saveEpisodePath("$VIDEO_URL${appState.filmInfo[0].preview}")
                 } else {
                     loadVod("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",requireContext())
-                    repositoriesRoomImpl.saveEpisodePath("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+                    viewModel.saveEpisodePath("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
                 }
             }
         }

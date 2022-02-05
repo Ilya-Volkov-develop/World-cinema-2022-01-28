@@ -10,12 +10,15 @@ import ru.iliavolkov.worldcinema.model.CoverDTO
 import ru.iliavolkov.worldcinema.model.EpisodesDTO
 import ru.iliavolkov.worldcinema.model.FilmInfoDTO
 import ru.iliavolkov.worldcinema.model.TokenDTO
+import ru.iliavolkov.worldcinema.repositiry.RepositoriesRoomImpl
 import ru.iliavolkov.worldcinema.repositiry.RepositoryRemoteImpl
+import ru.iliavolkov.worldcinema.utils.VIDEO_URL
 
 
 class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData()): ViewModel() {
 
     private val repositoryRemoteImpl: RepositoryRemoteImpl by lazy { RepositoryRemoteImpl() }
+    private val repositoriesRoomImpl: RepositoriesRoomImpl by lazy { RepositoriesRoomImpl() }
 
     fun getLiveData() = liveData
 
@@ -36,6 +39,18 @@ class MainViewModel(private val liveData: MutableLiveData<Any> = MutableLiveData
 
     fun getEpisodes(movieID: String) {
         repositoryRemoteImpl.getEpisodes(movieID,callbackEpisodesList)
+    }
+
+    fun saveFilm(film:FilmInfoDTO){
+        repositoriesRoomImpl.saveFilm(film)
+    }
+
+    fun deleteFilm(film:FilmInfoDTO){
+        repositoriesRoomImpl.deleteFilm(film)
+    }
+
+    fun saveEpisodePath(path:String){
+        repositoriesRoomImpl.saveEpisodePath(path)
     }
 
     private val callbackSuccessfulRegistration = object : Callback<String> {
